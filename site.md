@@ -1,8 +1,17 @@
-# Let-Him-Cook
+# Let! Him! Cook!
 ## By Eugene Myong
 
 ## Introduction
 Provide an introduction to your dataset, and clearly state the one question your project is centered around. Why should readers of your website care about the dataset and your question specifically? Report the number of rows in the dataset, the names of the columns that are relevant to your question, and descriptions of those relevant columns.
+
+Ah yes, food. You either love it or you starve to death (not recommended). But making food worth loving, now that's something else entirely. 
+
+<iframe
+  src="assets/avg-rating-hist.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
 ## Data Cleaning and Exploratory Data Analysis
 Describe, in detail, the data cleaning steps you took and how they affected your analyses. The steps should be explained in reference to the data generating process. Show the head of your cleaned DataFrame (see Part 2: Report for instructions).
 
