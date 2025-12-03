@@ -4,7 +4,26 @@
 ## Introduction
 Provide an introduction to your dataset, and clearly state the one question your project is centered around. Why should readers of your website care about the dataset and your question specifically? Report the number of rows in the dataset, the names of the columns that are relevant to your question, and descriptions of those relevant columns.
 
-Ah yes, food. You either love it or you starve to death (not recommended). But making food worth loving, now that's something else entirely. 
+Ah yes, food. You either love it or you starve to death (not recommended). But making food worth loving, now that's something else entirely. Thankfully, we as intuitive humans have (almost) perfected the ways of cooking, and we log our findings and methods in things called "recipes". These are finely detailed steps and instructions to recreate almost any food imaginable, from the simplest of pizzas to the most complex of crab rangoons.
+
+This dataset Recipes and Ratings contains a bunch of recipes as well as ratings for most of them. In this project, we'll go through it and analyze a whole bunch of things about it. But we can't just go in willy nilly, we need a task, a focus. And for this project, the big question we are trying to answer is:
+
+What kind of recipes have different numbers of steps?
+
+Why steps you may ask? Well because when you're following along a recipe, what do you look at to estimate how much time it will take? Besides the estimated time it will take I mean. The number of steps. How the steps are written and what gets done in one step versus what takes many can really how what kind of person the author is, and can help you assess whether or not you should follow their recipe. The steps are like a hidden indicator of trustworthiness, or crediblity. And so I believe that analyzing them may lead to some interesting results.
+
+As for some less interesting results, here are some facts about our data:
+
+- Number of Rows: 83,782
+- Number of Important Columns: 
+- The Important Columns:
+  - name: The name of the recipe.
+  - Minutes: The number of minutes the recipe is said to take.
+  - n_steps: The number of steps the recipe has.
+  - n_ingredients: The number of ingredients the recipe uses.
+  - avg_rating: The average rating of the recipe.
+  - weekday; The day of the week the recipe was submitted.
+
 
 <iframe
   src="assets/avg-rating-hist.html"
