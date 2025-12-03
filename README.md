@@ -51,7 +51,7 @@ You might be wondering, since we're looking at the number of steps, what does th
 <iframe
   src="assets/num-steps-hist.html"
   width="800"
-  height="400"
+  height="425"
   frameborder="0"
 ></iframe>
 Having a look above, we note that many recipes have between five to nine steps. According to the graph, there does not appear to be any recipe with more than fifty steps, but believe it or not, the largest amount of steps is actually one-hundred! I bet that would take at least a couple of days.
@@ -61,7 +61,7 @@ But how does the number of steps look when considering the average rating?
 <iframe
   src="assets/num-steps-avg-rating-scatter.html"
   width="800"
-  height="400"
+  height="425"
   frameborder="0"
 ></iframe>
 It looks like there is no strong trends or patterns between the number of steps and the average rating of a recipe. That big blob of blue in the top left is mainly due to the fact that most recipes are rated quite high and have less than about thirtyish steps. It also appears that recipes with more steps don't really impact the rating.
