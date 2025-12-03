@@ -44,10 +44,37 @@ And with that, the data looks much better. Have a look for yourself:
 | millionaire pound cake               | 286009 |       120 |           461724 | 2008-02-12  | ['time-to-make', 'course', 'cuisine', 'p...] | [878.3, 63.0, 326.0, 13.0, 20.0, 123.0, ...] |         7 | ['freheat the oven to 300 degrees', 'gre...] | why a millionaire pound cake?  because i... | ['butter', 'sugar', 'eggs', 'all-purpose...] |               7 |            5 |
 | 2000 meatloaf                        | 475785 |        90 |          2202916 | 2012-03-06  | ['time-to-make', 'course', 'main-ingredi...] | [267.0, 30.0, 12.0, 12.0, 29.0, 48.0, 2....] |        17 | ['pan fry bacon , and set aside on a pap...] | ready, set, cook! special edition contes... | ['meatloaf mixture', 'unsmoked bacon', '...] |              13 |            5 |
 
+I wonder if making that millionaire pound cake will make me a millionaire...
 
-Embed at least one plotly plot you created in your notebook that displays the distribution of a single column (see Part 2: Report for instructions). Include a 1-2 sentence explanation about your plot, making sure to describe and interpret any trends present. (Your notebook will likely have more visualizations than your website, and that's fine. Feel free to embed more than one univariate visualization in your website if you'd like, but make sure that each embedded plot is accompanied by a description.)
+You might be wondering, since we're looking at the number of steps, what does their distribution look like? Well, I'm happy to help:
 
-Embed at least one plotly plot that displays the relationship between two columns. Include a 1-2 sentence explanation about your plot, making sure to describe and interpret any trends present. (Your notebook will likely have more visualizations than your website, and that's fine. Feel free to embed more than one bivariate visualization in your website if you'd like, but make sure that each embedded plot is accompanied by a description.)
+<iframe
+  src="assets/num-steps-hist.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+Having a look above, we note that many recipes have between five to nine steps. According to the graph, there does not appear to be any recipe with more than fifty steps, but believe it or not, the largest amount of steps is actually one-hundred! I bet that would take at least a couple of days.
+
+But how does the number of steps look when considering the average rating? 
+
+<iframe
+  src="assets/num-steps-avg-rating-scatter.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+It looks like there is no strong trends or patterns between the number of steps and the average rating of a recipe. That big blob of blue in the top left is mainly due to the fact that most recipes are rated quite high and have less than about thirtyish steps. It also appears that recipes with more steps don't really impact the rating.
+
+|       1 |       2 |       3 |       4 |       5 |       6 |       7 |       8 |       9 |      10 |      11 |      12 |      13 |      14 |        15 |      16 |      17 |        18 |        19 |        20 |        21 |      22 |   23 |    24 |   25 |   26 |   27 |   28 |   29 |   30 |   31 |   32 |   33 |   37 |
+|--------:|--------:|--------:|--------:|--------:|--------:|--------:|--------:|--------:|--------:|--------:|--------:|--------:|--------:|----------:|--------:|--------:|----------:|----------:|----------:|----------:|--------:|-----:|------:|-----:|-----:|-----:|-----:|-----:|-----:|-----:|-----:|-----:|-----:|
+| 4.66667 | 4.66299 | 4.7662  | 4.69459 | 4.66742 | 4.64639 | 4.55043 | 4.55658 | 4.56284 | 4.59369 | 4.58182 | 4.59259 | 4.5     | 4.68333 | nan       | 4.6     | 4.88889 | nan       | nan       | nan       | nan       | nan     |  nan | nan   |  nan |  nan |  nan |  nan |  nan |  nan |  nan |  nan |  nan |  nan |
+| 4.80769 | 4.70988 | 4.67926 | 4.68089 | 4.65886 | 4.65024 | 4.71086 | 4.6784  | 4.58513 | 4.67214 | 4.68298 | 4.59547 | 4.85254 | 4.61364 |   4.58333 | 4.75    | 5       | nan       | nan       |   3.83333 | nan       | nan     |  nan | nan   |  nan |  nan |  nan |  nan |  nan |  nan |  nan |  nan |  nan |  nan |
+| 4.72917 | 4.7295  | 4.63575 | 4.65626 | 4.66707 | 4.64634 | 4.65272 | 4.63952 | 4.62818 | 4.68428 | 4.6469  | 4.68756 | 4.63538 | 4.34722 |   4.75917 | 4.71314 | 4.8125  |   4.55556 |   5       |   4.46429 |   5       |   4.75  |  nan | nan   |  nan |  nan |  nan |  nan |  nan |  nan |  nan |  nan |  nan |  nan |
+| 4.2881  | 4.63085 | 4.67689 | 4.63323 | 4.67487 | 4.66312 | 4.602   | 4.61868 | 4.63661 | 4.55808 | 4.61079 | 4.63675 | 4.69631 | 4.66539 |   4.66688 | 4.44592 | 4.75    |   4.75564 |   4.75    |   4.33333 |   4.9375  |   5     |  nan |   5   |  nan |  nan |  nan |  nan |  nan |  nan |  nan |  nan |  nan |  nan |
+| 4.72692 | 4.58755 | 4.64606 | 4.65844 | 4.64185 | 4.61625 | 4.60035 | 4.60316 | 4.54143 | 4.57859 | 4.61475 | 4.60254 | 4.59136 | 4.52691 |   4.55336 | 4.67482 | 4.80797 |   4.77407 |   4.78571 |   4.91667 |   4.41667 |   4.925 |    5 |   4.5 |  nan |    5 |  nan |    5 |  nan |  nan |  nan |  nan |  nan |  nan |
 
 Embed at least one grouped table or pivot table in your website and explain its significance.
 ## Assessment of Missingness
