@@ -54,7 +54,6 @@ You might be wondering, since we're looking at the number of steps, what does th
   height="600"
   frameborder="0"
 ></iframe>
-
 Having a look above, we note that many recipes have between five to nine steps. According to the graph, there does not appear to be any recipe with more than fifty steps, but believe it or not, the largest amount of steps is actually one-hundred! I bet that would take at least a couple of days.
 
 But how does the number of steps look when considering the average rating? 
@@ -65,18 +64,18 @@ But how does the number of steps look when considering the average rating?
   height="600"
   frameborder="0"
 ></iframe>
-
 It looks like there is no strong trends or patterns between the number of steps and the average rating of a recipe. That big blob of blue in the top left is mainly due to the fact that most recipes are rated quite high and have less than about thirtyish steps. It also appears that recipes with more steps don't really impact the rating.
 
-|       1 |       2 |       3 |       4 |       5 |       6 |       7 |       8 |       9 |      10 |      11 |      12 |      13 |      14 |        15 |      16 |      17 |        18 |        19 |        20 |        21 |      22 |   23 |    24 |   25 |   26 |   27 |   28 |   29 |   30 |   31 |   32 |   33 |   37 |
-|--------:|--------:|--------:|--------:|--------:|--------:|--------:|--------:|--------:|--------:|--------:|--------:|--------:|--------:|----------:|--------:|--------:|----------:|----------:|----------:|----------:|--------:|-----:|------:|-----:|-----:|-----:|-----:|-----:|-----:|-----:|-----:|-----:|-----:|
-| 4.66667 | 4.66299 | 4.7662  | 4.69459 | 4.66742 | 4.64639 | 4.55043 | 4.55658 | 4.56284 | 4.59369 | 4.58182 | 4.59259 | 4.5     | 4.68333 | nan       | 4.6     | 4.88889 | nan       | nan       | nan       | nan       | nan     |  nan | nan   |  nan |  nan |  nan |  nan |  nan |  nan |  nan |  nan |  nan |  nan |
-| 4.80769 | 4.70988 | 4.67926 | 4.68089 | 4.65886 | 4.65024 | 4.71086 | 4.6784  | 4.58513 | 4.67214 | 4.68298 | 4.59547 | 4.85254 | 4.61364 |   4.58333 | 4.75    | 5       | nan       | nan       |   3.83333 | nan       | nan     |  nan | nan   |  nan |  nan |  nan |  nan |  nan |  nan |  nan |  nan |  nan |  nan |
-| 4.72917 | 4.7295  | 4.63575 | 4.65626 | 4.66707 | 4.64634 | 4.65272 | 4.63952 | 4.62818 | 4.68428 | 4.6469  | 4.68756 | 4.63538 | 4.34722 |   4.75917 | 4.71314 | 4.8125  |   4.55556 |   5       |   4.46429 |   5       |   4.75  |  nan | nan   |  nan |  nan |  nan |  nan |  nan |  nan |  nan |  nan |  nan |  nan |
-| 4.2881  | 4.63085 | 4.67689 | 4.63323 | 4.67487 | 4.66312 | 4.602   | 4.61868 | 4.63661 | 4.55808 | 4.61079 | 4.63675 | 4.69631 | 4.66539 |   4.66688 | 4.44592 | 4.75    |   4.75564 |   4.75    |   4.33333 |   4.9375  |   5     |  nan |   5   |  nan |  nan |  nan |  nan |  nan |  nan |  nan |  nan |  nan |  nan |
-| 4.72692 | 4.58755 | 4.64606 | 4.65844 | 4.64185 | 4.61625 | 4.60035 | 4.60316 | 4.54143 | 4.57859 | 4.61475 | 4.60254 | 4.59136 | 4.52691 |   4.55336 | 4.67482 | 4.80797 |   4.77407 |   4.78571 |   4.91667 |   4.41667 |   4.925 |    5 |   4.5 |  nan |    5 |  nan |    5 |  nan |  nan |  nan |  nan |  nan |  nan |
+|        |       1 |       2 |       3 |       4 |       5 |       6 |       7 |       8 |       9 |      10 |      11 |      12 |      13 |      14 |        15 |      16 |      17 |        18 |        19 |        20 |        21 |      22 |   23 |    24 |   25 |   26 |   27 |   28 |   29 |   30 |   31 |   32 |   33 |   37 |  
+|--------:|--------:|--------:|--------:|--------:|--------:|--------:|--------:|--------:|--------:|--------:|--------:|--------:|--------:|--------:|----------:|--------:|--------:|----------:|----------:|----------:|----------:|--------:|-----:|------:|-----:|-----:|-----:|-----:|-----:|-----:|-----:|-----:|-----:|-----:|
+|       1 | 4.66667 | 4.66299 | 4.7662  | 4.69459 | 4.66742 | 4.64639 | 4.55043 | 4.55658 | 4.56284 | 4.59369 | 4.58182 | 4.59259 | 4.5     | 4.68333 | nan       | 4.6     | 4.88889 | nan       | nan       | nan       | nan       | nan     |  nan | nan   |  nan |  nan |  nan |  nan |  nan |  nan |  nan |  nan |  nan |  nan |
+|       2 | 4.80769 | 4.70988 | 4.67926 | 4.68089 | 4.65886 | 4.65024 | 4.71086 | 4.6784  | 4.58513 | 4.67214 | 4.68298 | 4.59547 | 4.85254 | 4.61364 |   4.58333 | 4.75    | 5       | nan       | nan       |   3.83333 | nan       | nan     |  nan | nan   |  nan |  nan |  nan |  nan |  nan |  nan |  nan |  nan |  nan |  nan |
+|       3 | 4.72917 | 4.7295  | 4.63575 | 4.65626 | 4.66707 | 4.64634 | 4.65272 | 4.63952 | 4.62818 | 4.68428 | 4.6469  | 4.68756 | 4.63538 | 4.34722 |   4.75917 | 4.71314 | 4.8125  |   4.55556 |   5       |   4.46429 |   5       |   4.75  |  nan | nan   |  nan |  nan |  nan |  nan |  nan |  nan |  nan |  nan |  nan |  nan |
+|       4 | 4.2881  | 4.63085 | 4.67689 | 4.63323 | 4.67487 | 4.66312 | 4.602   | 4.61868 | 4.63661 | 4.55808 | 4.61079 | 4.63675 | 4.69631 | 4.66539 |   4.66688 | 4.44592 | 4.75    |   4.75564 |   4.75    |   4.33333 |   4.9375  |   5     |  nan |   5   |  nan |  nan |  nan |  nan |  nan |  nan |  nan |  nan |  nan |  nan |
+|       5 | 4.72692 | 4.58755 | 4.64606 | 4.65844 | 4.64185 | 4.61625 | 4.60035 | 4.60316 | 4.54143 | 4.57859 | 4.61475 | 4.60254 | 4.59136 | 4.52691 |   4.55336 | 4.67482 | 4.80797 |   4.77407 |   4.78571 |   4.91667 |   4.41667 |   4.925 |    5 |   4.5 |  nan |    5 |  nan |    5 |  nan |  nan |  nan |  nan |  nan |  nan |
 
-Embed at least one grouped table or pivot table in your website and explain its significance.
+And heres a table showing the number of steps (on the left) and the number of ingredients (on the top) and their average rating (in the cells). Notice how the more ingredients and steps you have, the more common missing values are.
+
 ## Assessment of Missingness
 State whether you believe there is a column in your dataset that is NMAR. Explain your reasoning and any additional data you might want to obtain that could explain the missingness (thereby making it MAR). Make sure to explicitly use the term "NMAR."
 
