@@ -148,9 +148,13 @@ As for the exact differences, recipes with more ingredients have on average 12.4
 This is kind of what you would think right? The more ingredients a recipe has, the more steps you would think it needs to use all of those ingredients (provided the ingredients acutally serve a purpose and aern't just thrown in to make it look more complicated). While this test does not really prove anything, the statistical evidence is strong enough to support the idea that the number of ingredients is associated with the number of steps.
 
 ## Framing a Prediction Problem
-Clearly state your prediction problem and type (classification or regression). If you are building a classifier, make sure to state whether you are performing binary classification or multiclass classification. Report the response variable (i.e. the variable you are predicting) and why you chose it, the metric you are using to evaluate your model and why you chose it over other suitable metrics (e.g. accuracy vs. F1-score).
 
-Note: Make sure to justify what information you would know at the "time of prediction" and to only train your model using those features. For instance, if we wanted to predict your final exam grade, we couldn't use your Final Project grade, because the project is only due after the final exam! Feel free to ask questions if you're not sure.
+We've discovered what affects the number of steps in a recipe as well as what the number of steps in a recipe affects. So what if we wanted to do some predicting (for the number of steps in a recipe, if that wasn't obvious already)?
+
+We now define a prediction problem: predicting the number of steps in a recipe. This is a regression problem, with response variable: the number of steps (Wow). The metric that we'll use to evaluate our model is the Root Mean Squared Error (RMSE), which is like the Mean Squared Error (MSE) but we'll be able to evaluate our models performance in actual steps, makes it much easier to define a good versus a bad performance. RMSE also penalizes larger mistakes more heavily than metrics like Mean Absolute Error (MAE). This is good because severely mispredicting a recipe’s complexity (like predicting 5 steps when there are actually 30) is a more meaningful error than being slightly off, and should be treated as such.
+
+At the time of prediction, we would know basically everything except one teeny tiny feature: Average Rating. This is because ratings come from the future, only after the recipe is published, wheras the number of steps is defined well before any ratings are made. As such, it makes no sense to use a recipes average rating to predict its number of steps.
+
 ## Baseline Model
 Describe your model and state the features in your model, including how many are quantitative, ordinal, and nominal, and how you performed any necessary encodings. Report the performance of your model and whether or not you believe your current model is "good" and why.
 
