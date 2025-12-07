@@ -101,17 +101,52 @@ The red bar far on the right indicates what actually happened, the observed valu
 
 What this means is that since the actual result is nowhere near what we expected to happen (where we assumed that there was no relationship between the number of steps and missingness of Average Rating), it appears that there is, in fact, a very real relationship between the number of steps and the missingess of Average Rating.  
 
-In fact, as it turns out, the mean number of steps for recipes with average ratings is about 9.87, whereas the mean number of steps for recipes missing an average rating is 11.23.  
+In fact, as it turns out, the mean number of steps for recipes with average ratings is about 9.87, whereas the mean number of steps for recipes missing an average rating is 11.23. 
+
+<iframe
+  src="assets/nmar-test-diffs.html"
+  width="800"
+  height="425"
+  frameborder="0"
+></iframe>
+You can see the difference above, the "True" group tends to have slightly more steps than the "False" group.
 
 Give or take one step may not seem like a lot, but it does provide us with a potential explanation: more "complex" recipes are more likely to be missing ratings. Maybe some people see the higher number of steps and get intimidated? I don't blame them honestly, if I open a recipe for some spaghetti and see more lines than I was expecting than already I'm thinking "Man is there something easier I can make?"
 
 ## Hypothesis Testing
-Clearly state your null and alternative hypotheses, your choice of test statistic and significance level, the resulting 
--value, and your conclusion. Justify why these choices are good choices for answering the question you are trying to answer.
 
-Optional: Embed a visualization related to your hypothesis test in your website.
+Now that we've tied up some loose ends, it's time to start the real digging. 
 
-Tip: When making writing your conclusions to the statistical tests in this project, never use language that implies an absolute conclusion; since we are performing statistical tests and not randomized controlled trials, we cannot prove that either hypothesis is 100% true or false.
+As a reminder, our big question was: What types of recipes tend to have different numbers of steps?
+
+We'll take a shot at answering this by analyzing the number of ingredients in a recipe to try to find out recipes with different numbers of ingredients have different numbers of steps. We'll do so using a permutation test with:
+- Null Hypothesis: Recipes with more ingredients have the same mean number of steps as recipes with fewer ingredients.
+- Alternative Hypothesis: Recipes with more ingredients have a different mean number of steps than recipes with fewer ingredients.
+
+Where we differentiate less and more by using the median: recipes with less than or equal to the median are said to have less or fewer ingredients, and recipes with more than the median are said to have more ingredients.
+
+We will use a test statistic of difference in group means, and a significance level of 0.05.
+
+And here are those results:
+
+<iframe
+  src="assets/hyp-test.html"
+  width="800"
+  height="425"
+  frameborder="0"
+></iframe>
+Note that, once again, the red bar is very far to the right and nowhere near the blue bars. This means that, with a p-value of effectively 0.0, we reject the null hypothesis and conclude that recipes with more ingredients tend to have different numbers of steps than those with fewer ingredients.
+
+As for the exact differences, recipes with more ingredients have on average 12.41 steps, and recipes with less ingredients have on average 8.05 steps. Here's that visualized:
+
+<iframe
+  src="assets/hyp-test-diffs.html"
+  width="800"
+  height="425"
+  frameborder="0"
+></iframe>
+This is kind of what you would think right? The more ingredients a recipe has, the more steps you would think it needs to use all of those ingredients (provided the ingredients acutally serve a purpose and aern't just thrown in to make it look more complicated). While this test does not really prove anything, the statistical evidence is strong enough to support the idea that the number of ingredients is associated with the number of steps.
+
 ## Framing a Prediction Problem
 Clearly state your prediction problem and type (classification or regression). If you are building a classifier, make sure to state whether you are performing binary classification or multiclass classification. Report the response variable (i.e. the variable you are predicting) and why you chose it, the metric you are using to evaluate your model and why you chose it over other suitable metrics (e.g. accuracy vs. F1-score).
 
