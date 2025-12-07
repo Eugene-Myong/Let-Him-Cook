@@ -77,15 +77,34 @@ It looks like there is no strong trends or patterns between the number of steps 
 And heres a table showing the number of steps (on the left) and the number of ingredients (on the top) and their average rating (in the cells). Notice how the more ingredients and steps you have, the more common missing values are.
 
 ## Assessment of Missingness
-State whether you believe there is a column in your dataset that is NMAR. Explain your reasoning and any additional data you might want to obtain that could explain the missingness (thereby making it MAR). Make sure to explicitly use the term "NMAR."
 
-Present and interpret the results of your missingness permutation tests with respect to your data and question. Embed a plotly plot related to your missingness exploration; ideas include:
-• The distribution of column Y
- when column X
- is missing and the distribution of column Y
- when column Y
- is not missing, as was done in Lecture 8.
-• The empirical distribution of the test statistic used in one of your permutation tests, along with the observed statistic.
+NMAR: Not Missing At Random. This term describes a missing value in which the reason for its missingness depends on the value itself. And after my hours of reasearch and acute calculations, I have reason to believe that this recipes dataset does in fact have a column that is NMAR! And it's none other than the Average Rating column.
+
+First of all, the Average Rating column can only exist if it has at least one rating. Thus, if a recipe never recieved any ratings, than obviously it can't have an average of those nonexistent ratings! 
+
+But when would this happen? Perhaps for new recipes that have just been uploaded or rare recipes that not many people are looking for, they may not recieve many views, and thus it's reasonable to think that they recieve even less ratings (or in this case, none at all). This could also happen with poorly written recipes. If you're looking for a pizza recipe and you find one that only has one step: "Buy one", then you would probably keep looking. Since that recipe was never technically used, it won't recieve any ratings. 
+
+As such, additional data such as the number of steps/ingredients and the steps/ingredients themselves may clue us in as to why exactly a recipe has no ratings. If we could find a reason in other data as to why a recipe doesn't have a rating/average rating, then that would make the Average Rating column Missing At Random (MAR), which means the missing values depend on another column.
+
+But is this the case for this data? Well...
+
+As it turns out, it is! I ran a permutation test to find out whether the number of steps is involved in the missingness of average rating.
+
+<iframe
+  src="assets/nmar-test.html"
+  width="800"
+  height="425"
+  frameborder="0"
+></iframe>
+The blue bars indicate the null distribution of the test stat while assuming that the missing Average Rating values are Missing Completely At Random (MCAR). In other words, these bars represent what we would expect to happen if the missing Average Rating values really didn't have anything to do with the number of steps, the kind of results we would see "normally" if you will.  
+The red bar far on the right indicates what actually happened, the observed value in our dataset. If it were among the blue lines we would say that the number of steps has no relationship with the missingness of Average Rating, but it's way over there (not with the blue bars). 
+
+What this means is that since the actual result is nowhere near what we expected to happen (where we assumed that there was no relationship between the number of steps and missingness of Average Rating), it appears that there is, in fact, a very real relationship between the number of steps and the missingess of Average Rating.  
+
+In fact, as it turns out, the mean number of steps for recipes with average ratings is about 9.87, whereas the mean number of steps for recipes missing an average rating is 11.23.  
+
+Give or take one step may not seem like a lot, but it does provide us with a potential explanation: more "complex" recipes are more likely to be missing ratings. Maybe some people see the higher number of steps and get intimidated? I don't blame them honestly, if I open a recipe for some spaghetti and see more lines than I was expecting than already I'm thinking "Man is there something easier I can make?"
+
 ## Hypothesis Testing
 Clearly state your null and alternative hypotheses, your choice of test statistic and significance level, the resulting 
 -value, and your conclusion. Justify why these choices are good choices for answering the question you are trying to answer.
