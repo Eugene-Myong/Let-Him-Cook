@@ -156,17 +156,89 @@ We now define a prediction problem: predicting the number of steps in a recipe. 
 At the time of prediction, we would know basically everything except one teeny tiny feature: Average Rating. This is because ratings come from the future, only after the recipe is published, wheras the number of steps is defined well before any ratings are made. As such, it makes no sense to use a recipes average rating to predict its number of steps.
 
 ## Baseline Model
-Describe your model and state the features in your model, including how many are quantitative, ordinal, and nominal, and how you performed any necessary encodings. Report the performance of your model and whether or not you believe your current model is "good" and why.
 
-Tip: Make sure to hit all of the points above: many projects in the past have lost points for not doing so
+For my first trick... sorry. For my first, baseline model, I used a simple linear regression model that predicts the number of steps using two basic features: the number of ingredients and the number of minutes the recipe requires. Both the number of ingredients and minutes are quantitative features. No ordinal or nominal features were used.
+
+As good practice entails, I standardized both features using StandardScalar inside a ColumnTransformer.
+
+As for the results, the RMSE was about 5.58, which means it is off by about 5.58 steps on average.
+
+Now, you're probably wondering: Is this model good?
+
+No.
+
+Being off by about 5.58 steps is a very large number of steps to be off by, considering that most recipes are under or around ten steps, so it's completely possible for us to predict double the amount of steps that a recipe actually has (which is very very bad). But this is a baseline model, and in that regard, it's usable.
+
 ## Final Model
-State the features you added and why they are good for the data and prediction task. Note that you can't simply state "these features improved my accuracy", since you'd need to choose these features and fit a model before noticing that – instead, talk about why you believe these features improved your model's performance from the perspective of the data generating process.
 
-Describe the modeling algorithm you chose, the hyperparameters that ended up performing the best, and the method you used to select hyperparameters and your overall model. Describe how your Final Model's performance is an improvement over your Baseline Model's performance.
+Now what if we made our model better? Well that's exactly what I did!
 
-Optional: Include a visualization that describes your model's performance, e.g. a confusion matrix, if applicable.
+I began by adding some new features:
+
+- Minutes per Ingredient: The average number of minutes spent per ingredient.
+  - Intuition: A recipe with lots of ingredients but not a lot of total time most likely uses simple steps and so less steps overall, while a long time per ingredient suggests more detailed steps or more steps overall.
+  - Why it's good: Captures efficiency or step complexity in a way that raw minutes/ingredient count couldn't count alone.
+- Long Cook Indicator: Indicates if a recipe takes a "long" time to cook (at least sixty minutes).
+  - 1 if cooking time exceeds sixty minutes, 0 if less or equal to sixty minutes
+  - Intuition: “Long-cook” recipes often require preparation that may take multiple steps by themselves.
+  - Why it's good: A threshold-based feature allows the model to treat long-duration recipes differently without assuming linearity.
+- Weekend Flag: Indicates if a recipe was posted/released on a weekend or weekday.
+  - 1 if posted/released on a weekend, 0 if on a weekday.
+  - Intuition: People tend to have more time on the weekends, and so may release more elaborate/step heavy recipes on the weekend when they have the time to perfect them.
+  - Why it's good: Provides contextual information about recipe complexity patterns tied to user behavior.
+
+As for the modeling algorithm, I used a Random Forest Regressor, a bagging-based ensemble of decision trees. This model handles nonlinear relationships and feature interactions quite well, much better than regular linear regression. 
+
+As for the hyperparameters, to find the best combination of hyperparameters, I used 5-fold cross validation. This ensures a fair comparison as well as protects against overfitting. The best-performing hyperparameter combination was selected automatically according to the lowest cross-validated negative MSE.
+
+- n_estimators: Number of trees in the forest
+  - Values tested: [50, 100, 200]
+  - Best value:
+- max_depth: Maximum depth of each tree
+  - Values tested: [8, 12, 16]
+  - Best value:
+- min_samples_leaf: Minimum samples per leaf node
+  - Values tested: [1, 3, 5]
+  - Best value:
+
+As for the results, the RMSE was about 5.17, which means it is off by about 5.17 steps on average.
+
+Now, you're probably wondering: Is this model good?
+
+No.
+
+But it's better. And that's pretty good.
+
+We definitely saw an improvement, specifically of 0.41 steps. This improvement is still pretty good though, given that most recipes contain between five to ten steps.
+
 ## Fairness Analysis
-Clearly state your choice of Group X and Group Y, your evaluation metric, your null and alternative hypotheses, your choice of test statistic and significance level, the resulting 
--value, and your conclusion.
 
-Optional: Embed a visualization related to your permutation test in your website.
+So we have our results. Nice!
+
+But are our results fair? For what groups? How do we determine that?
+
+Well, i've decided to see if our model performs equally well for recipes with few ingredients and many ingredients.
+
+We define groups as follows:
+- Group X: Recipes with more than the median number of ingredients.
+- Group Y: Recipes with less than the median number of ingredients.
+
+Again, we'll use the RMSE as our evaluation metric.
+
+As for our hypothesis:
+- Null: The model is fair: Its precision for recipes with number of ingredients less than and greater than the median is the same.
+- Alt: The model is unfair: its precision for recipes with number of ingredients less than or greater than the median differs.
+
+For our test statistic, we use the Absolute Difference in RMSE, with significance level 0.05. We use the RMSE this time because this test is comparing model performance, not data like the others were.
+
+Our results: we had a p-value of effectively 0. Here's that on a graph:
+
+<iframe
+  src="assets/fair-test.html"
+  width="800"
+  height="425"
+  frameborder="0"
+></iframe>
+And so, we reject the null hypothesis and conclude that our model is not fair, it performs meaningfully different for low ingredient recipes compared to high ingredient recipes. 
+
+Almost done! at least im done for tonight.
