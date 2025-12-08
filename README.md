@@ -9,7 +9,7 @@ This dataset Recipes and Ratings contains a bunch of recipes as well as ratings 
 
 What kind of recipes have different numbers of steps?
 
-Why steps you may ask? Well because when you're following along a recipe, what do you look at to estimate how much time it will take? Besides the estimated time it will take I mean. The number of steps. How the steps are written and what gets done in one step versus what takes many can really how what kind of person the author is, and can help you assess whether or not you should follow their recipe. The steps are like a hidden indicator of trustworthiness, or crediblity. And so I believe that analyzing them may lead to some interesting results.
+Why steps you may ask? Well because when you're following along a recipe, what do you look at to estimate how much time it will take? Besides the estimated time it will take I mean. The number of steps. How the steps are written and what gets done in one step versus what takes many can really how what kind of person the author is, and can help you assess whether or not you should follow their recipe. The steps are like a hidden indicator of trustworthiness, or credibility. And so I believe that analyzing them may lead to some interesting results.
 
 Here are some important facts about our data:
 
@@ -28,7 +28,7 @@ Here are some important facts about our data:
 
 First things first, we need to make the data useable. This means that we take the two data sets we have and make them one, by taking all the ratings from the rating dataset and creating an average rating column, which we add to the recipes dataset, which is what we'll use from now on. 
 
-Some columns like tags, steps, and ingredients are strigified lists, so we apply a custom function that turns them into regular lists of strings. We ensure that n_steps and the length of the steps list is the same for all recipes, and do the same for ingredients.
+Some columns like tags, steps, and ingredients are stringified lists, so we apply a custom function that turns them into regular lists of strings. We ensure that n_steps and the length of the steps list is the same for all recipes, and do the same for ingredients. All discrepancies were updated.
 
 We then proceed by normalizing (lowercasing and removing excessive whitespaces/punctuation/characters) the names, description, and ingredients columns. We also change the submitted column to datetime objects, which will make it so much easier to work with, as well as creating columns for the year, month, and weekday.
 
@@ -78,17 +78,17 @@ And heres a table showing the number of steps (on the left) and the number of in
 
 ## Assessment of Missingness
 
-NMAR: Not Missing At Random. This term describes a missing value in which the reason for its missingness depends on the value itself. And after my hours of reasearch and acute calculations, I have reason to believe that this recipes dataset does in fact have a column that is NMAR! And it's none other than the Average Rating column.
+NMAR: Not Missing At Random. This term describes a missing value in which the reason for its missingness depends on the value itself. And after my hours of reasearch and acute calculations, I have reason to believe that it is plausible for the avg_rating column to be NMAR!
 
-First of all, the Average Rating column can only exist if it has at least one rating. Thus, if a recipe never recieved any ratings, than obviously it can't have an average of those nonexistent ratings! 
+First of all, the Average Rating column can only exist if it has at least one rating. Thus, if a recipe never received any ratings, than obviously it can't have an average of those nonexistent ratings! 
 
-But when would this happen? Perhaps for new recipes that have just been uploaded or rare recipes that not many people are looking for, they may not recieve many views, and thus it's reasonable to think that they recieve even less ratings (or in this case, none at all). This could also happen with poorly written recipes. If you're looking for a pizza recipe and you find one that only has one step: "Buy one", then you would probably keep looking. Since that recipe was never technically used, it won't recieve any ratings. 
+But when would this happen? Perhaps for new recipes that have just been uploaded or rare recipes that not many people are looking for, they may not receive many views, and thus it's reasonable to think that they receive even less ratings (or in this case, none at all). This could also happen with poorly written recipes. If you're looking for a pizza recipe and you find one that only has one step: "Buy one", then you would probably keep looking. Since that recipe was never technically used, it won't receive any ratings. 
 
 As such, additional data such as the number of steps/ingredients and the steps/ingredients themselves may clue us in as to why exactly a recipe has no ratings. If we could find a reason in other data as to why a recipe doesn't have a rating/average rating, then that would make the Average Rating column Missing At Random (MAR), which means the missing values depend on another column.
 
 But is this the case for this data? Well...
 
-As it turns out, it is! I ran a permutation test to find out whether the number of steps is involved in the missingness of average rating.
+As it turns out, it is! Or, well, since we can't really prove it, there is strong evidence that it is. I ran a permutation test to find out whether the number of steps is involved in the missingness of average rating.
 
 <iframe
   src="assets/nmar-test.html"
@@ -125,7 +125,7 @@ We'll take a shot at answering this by analyzing the number of ingredients in a 
 
 Where we differentiate less and more by using the median: recipes with less than or equal to the median are said to have less or fewer ingredients, and recipes with more than the median are said to have more ingredients.
 
-We will use a test statistic of difference in group means, and a significance level of 0.05.
+We will use a test statistic of absolute difference in group means, and a significance level of 0.05.
 
 And here are those results:
 
@@ -145,7 +145,7 @@ As for the exact differences, recipes with more ingredients have on average 12.4
   height="425"
   frameborder="0"
 ></iframe>
-This is kind of what you would think right? The more ingredients a recipe has, the more steps you would think it needs to use all of those ingredients (provided the ingredients acutally serve a purpose and aern't just thrown in to make it look more complicated). While this test does not really prove anything, the statistical evidence is strong enough to support the idea that the number of ingredients is associated with the number of steps.
+This is kind of what you would think right? The more ingredients a recipe has, the more steps you would think it needs to use all of those ingredients (provided the ingredients actually serve a purpose and aren't just thrown in to make it look more complicated). While this test does not really prove anything, the statistical evidence is strong enough to support the idea that the number of ingredients is associated with the number of steps.
 
 ## Framing a Prediction Problem
 
@@ -193,13 +193,13 @@ As for the hyperparameters, to find the best combination of hyperparameters, I u
 
 - n_estimators: Number of trees in the forest
   - Values tested: [50, 100, 200]
-  - Best value:
+  - Best value: 200
 - max_depth: Maximum depth of each tree
-  - Values tested: [8, 12, 16]
-  - Best value:
+  - Values tested: [5, 10, 20]
+  - Best value: 10
 - min_samples_leaf: Minimum samples per leaf node
   - Values tested: [1, 3, 5]
-  - Best value:
+  - Best value: 5
 
 As for the results, the RMSE was about 5.17, which means it is off by about 5.17 steps on average.
 
@@ -226,8 +226,9 @@ We define groups as follows:
 Again, we'll use the RMSE as our evaluation metric.
 
 As for our hypothesis:
-- Null: The model is fair: Its precision for recipes with number of ingredients less than and greater than the median is the same.
-- Alt: The model is unfair: its precision for recipes with number of ingredients less than or greater than the median differs.
+- Null: The model is fair: Its RMSE for recipes with number of ingredients less than and greater than the median is the same.
+- Alt: The model is unfair: its RMSE for recipes with number of ingredients greater than the median is different that the RMSE for recipes with number of ingredients less than the median.
+less than or greater than the median differs.
 
 For our test statistic, we use the Absolute Difference in RMSE, with significance level 0.05. We use the RMSE this time because this test is comparing model performance, not data like the others were.
 
@@ -239,6 +240,6 @@ Our results: we had a p-value of effectively 0. Here's that on a graph:
   height="425"
   frameborder="0"
 ></iframe>
-And so, we reject the null hypothesis and conclude that our model is not fair, it performs meaningfully different for low ingredient recipes compared to high ingredient recipes. 
+And so, we reject the null hypothesis and conclude that our model is not fair, we find evidence of a difference in performance across groupS with less than/greater than the median number of ingredients. 
 
 Almost done! at least im done for tonight.
