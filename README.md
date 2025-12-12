@@ -244,4 +244,8 @@ And so, we reject the null hypothesis and conclude that our model is not fair, w
 
 
 
-And thus concludes the analysis of this dataset. Twas a long one, and one that taught us a lot. I thank you for making it all the way through, for allowing me to perhaps expose you to something you may not have known about recipes. 
+And thus concludes the analysis of this dataset. Twas a long one, and one that taught us a lot. I thank you for making it all the way through, and for allowing me to perhaps expose you to something you may not have known about recipes. 
+
+Now go out there, make some great food, and remember...
+
+The secret ingredient to any recipe is love.
