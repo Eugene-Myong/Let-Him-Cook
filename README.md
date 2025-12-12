@@ -157,7 +157,7 @@ At the time of prediction, we would know basically everything except one teeny t
 
 ## Baseline Model
 
-For my first trick... sorry. For my first, baseline model, I used a simple linear regression model that predicts the number of steps using two basic features: the number of ingredients and the number of minutes the recipe requires. Both the number of ingredients and minutes are quantitative features. No ordinal or nominal features were used.
+For my baseline model I used a simple linear regression model that predicts the number of steps using two basic features: the number of ingredients and the number of minutes the recipe requires. Both the number of ingredients and minutes are quantitative features. No ordinal or nominal features were used.
 
 As good practice entails, I standardized both features using StandardScalar inside a ColumnTransformer.
 
@@ -207,9 +207,9 @@ Now, you're probably wondering: Is this model good?
 
 No.
 
-But it's better. And that's pretty good.
+But it's better. And that's pretty good!
 
-We definitely saw an improvement, specifically of 0.41 steps. This improvement is still pretty good though, given that most recipes contain between five to ten steps.
+We definitely saw an improvement, specifically of 0.41 steps. Given that most recipes contain between five to ten steps, this improvement is quite alright.
 
 ## Fairness Analysis
 
@@ -242,4 +242,6 @@ Our results: we had a p-value of effectively 0. Here's that on a graph:
 ></iframe>
 And so, we reject the null hypothesis and conclude that our model is not fair, we find evidence of a difference in performance across groupS with less than/greater than the median number of ingredients. 
 
-Almost done! at least im done for tonight.
+
+
+And thus concludes the analysis of this dataset. Twas a long one, and one that taught us a lot. I thank you for making it all the way through, for allowing me to perhaps expose you to something you may not have known about recipes. 
